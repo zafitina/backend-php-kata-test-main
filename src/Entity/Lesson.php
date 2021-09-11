@@ -41,15 +41,12 @@ class Lesson extends Template
      * @param  [type] $text Contenu du template à mettre à jour
      * @return [type]       [description]
      */
-    public function computeText()
+    public function computeText($text)
     {
         $_lessonFromRepository = LessonRepository::getInstance()->getById($this->id);
         $usefulObject = MeetingPointRepository::getInstance()->getById($this->meetingPointId);
         $instructorOfLesson = InstructorRepository::getInstance()->getById($this->instructorId);
 
-        if (strpos($text, '[lesson:instructor_link]') !== false) {
-            $text = str_replace('[instructor_link]', 'instructors/' . $instructorOfLesson->id .'-'.urlencode($instructorOfLesson->firstname), $text);
-        }
 
         $containsSummaryHtml = strpos($text, '[lesson:summary_html]');
         $containsSummary     = strpos($text, '[lesson:summary]');
@@ -71,13 +68,15 @@ class Lesson extends Template
             }
         }
 
+        // ADD MEETING
         if ($this->meetingPointId) {
             if (strpos($text, '[lesson:meeting_point]') !== false) {
                 $text = $usefulObject->computeText($text);
             }
         }
 
-        $text = (strpos($text, '[lesson:instructor_name]') !== false) and $text = str_replace('[lesson:instructor_name]', $instructorOfLesson->firstname, $text);
+        // ADD INSTRUCTOR
+        $text = $instructorOfLesson->computeText($text);
 
         if (strpos($text, '[lesson:start_date]') !== false) {
             $text = str_replace('[lesson:start_date]', $this->start_time->format('d/m/Y'), $text);

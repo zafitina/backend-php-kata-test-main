@@ -12,8 +12,9 @@ use App\Repository\InstructorRepository;
 use App\Repository\LessonRepository;
 use App\Repository\MeetingPointRepository;
 use App\TemplateManager;
+use PHPUnit\Framework\TestCase;
 
-class TemplateManagerTest extends \PHPUnit_Framework_TestCase
+class TemplateManagerTest extends TestCase
 {
     /**
      * Init the mocks

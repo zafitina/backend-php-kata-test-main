@@ -25,7 +25,8 @@ class Instructor extends Template
      */
     public function computeText($text)
     {
-        $text = str_replace('[instructor_link]', 'instructors/' . $data['instructor']->id .'-'.urlencode($data['instructor']->firstname), $text);
+        (strpos($text, '[lesson:instructor_name]') !== false) and $text = str_replace('[lesson:instructor_name]', $this->firstname, $text);
+        $text = str_replace('[instructor_link]', 'instructors/' . $this->id .'-'.urlencode($this->firstname), $text);
         return $text;
     }
 }

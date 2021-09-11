@@ -27,7 +27,7 @@ class Learner extends Template
      */
     public function computeText($text)
     {
-        $text = (strpos($text, '[user:first_name]') !== false) and $text = str_replace('[user:first_name]', ucfirst(strtolower($this->firstname)), $text);
+        (strpos($text, '[user:first_name]') !== false) and $text = str_replace('[user:first_name]', ucfirst(strtolower($this->firstname)), $text);
         return $text;
     }
 }

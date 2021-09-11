@@ -21,7 +21,7 @@ class Template
      * @param  [type] $text [description]
      * @return [type]       [description]
      */
-    public function computeText($text = null)
+    public function computeText($text)
     {
     }
 }

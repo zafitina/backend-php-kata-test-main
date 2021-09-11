@@ -35,18 +35,6 @@ class TemplateManager
             $text = $lesson->computeText($text);
         }
 
-        /**
-         * INSCTRUCTOR
-         */
-        if (isset($data['instructor'])  and ($data['instructor']  instanceof Instructor)) {
-            $instructor = $data['instructor'] ? $data['instructor'] : null;
-            if ($instructor) {
-                $text = $instructor->computeText($text);
-            } else {
-                $text = str_replace('[instructor_link]', '', $text);
-            }
-        }
-
         /*
          * USER
          */
