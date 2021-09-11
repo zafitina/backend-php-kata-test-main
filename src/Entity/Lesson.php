@@ -73,7 +73,7 @@ class Lesson extends Template
 
         if ($this->meetingPointId) {
             if (strpos($text, '[lesson:meeting_point]') !== false) {
-                $text = str_replace('[lesson:meeting_point]', $usefulObject->name, $text);
+                $text = $usefulObject->computeText($text);
             }
         }
 
